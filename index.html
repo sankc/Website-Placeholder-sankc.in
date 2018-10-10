@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>sank_c Home</title>
+</head>
+
+<body class="bg" background="gif-sank_.gif">
+	<div class="container " alt="mainbody" style="padding-top:23vh;padding-bottom:25vh">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h1 style="font-size:3.5vw;color:#ffffff;font-style:bold;font-family:courier;font-weight: bolder;">We are just getting everything ready, we will be online soon</h1>
+			</div>
+		</div>
+			<div class="row text-center">
+
+			<a href="https://discord.gg/gxkb94k"><i class="fab fa-discord fa-4x icons" style="color:whitesmoke" ;></i></a>
+
+			<a href="https://twitter.com/sanket_c"><i class="fab fa-twitter-square fa-4x icons" style="color:whitesmoke" ;></i></a>
+
+			<a href="https://www.instagram.com/sanketc/"><i class="fas fa-camera-retro fa-4x icons" style="color:whitesmoke" ;></i></a>
+
+			<a href="https://www.linkedin.com/in/sanket-chhabra/"><i class="fab fa-linkedin fa-4x icons" style="color:whitesmoke" ;></i></a>
+
+			<a href="https://github.com/sankc"><i class="fab fa-github fa-4x icons" style="color:whitesmoke" ;></i></a>
+
+			</div>
+		<div class="container row md-btn">
+
+			<button type="button" class="btn btn-primary pulse-button" data-toggle="modal" data-target="#myModal">
+					<i class="fa fa-envelope fa-4x" aria-hidden="true"></i>  </button>
+		  
+			<div class="modal fade" id="myModal" action='form.php'>
+			  <div class="modal-dialog">
+				<div class="modal-content">
+
+				  <div class="modal-body">
+
+				   <button type="button" class="close" data-dismiss="modal">&times;</button>
+				   <form id="contact-form" method="post">
+
+						<h1 class="form-title">
+							Contact Me
+						</h1>
+					<h4>
+						<div class="input-wrap wrap-2 validate-input" data-validate="Name is required">
+							
+							<p class="label-inputform" id="bootstrap-overrides" >Your Name</p>
+							<input type="text" name="name" id="name" class="inputform" placeholder="Enter your name">
+							
+						
+						</div>
+		
+						<div class="input-wrap wrap-2 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+							<p class="label-inputform" >Email</p>
+							<input type="text" name="email" id="email" class="inputform" placeholder="Enter your email address">
+							
+						</div>
+		
+						<div class="input-wrap validate-input " data-validate = "Message is required">
+							<p class="label-inputform"">Message</p>
+							<textarea class="inputform" id="message" name="message" placeholder="Your message here..."></textarea>
+							
+						</div>
+					</h4>
+					<input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />
+					<br/>
+					<span id="error_message" class="text-danger"></span>  
+                    <span id="success_message" class="text-success"></span> 
+				</form>
+		  
+				  </div>
+		  
+		  
+		  
+				</div>
+			  </div>
+			</div>
+		  
+		  </div>
+	</div>
+</body>
+
+</html>
+
+<script>  
+	$(document).ready(function(){  
+		 $('#submit').click(function(){  
+			  var name = $('#name').val();  
+			  var email = $('#email').val(); 
+			  var message = $('#message').val();  
+			  if(name == '' || message == '' || email == '')  
+			  {  
+				   $('#error_message').html("All Fields are required");  
+			  }  
+			  else  
+			  {  
+				   $('#error_message').html('');  
+				   $.ajax({  
+						url:"form.php",  
+						method:"POST",  
+						data:{name:name, email:email, message:message},  
+						success:function(data){  
+							 $("form").trigger("reset");  
+							 $('#success_message').fadeIn().html(data);  
+							 setTimeout(function(){  
+								  $('#success_message').fadeOut("Slow");  
+							 }, 2000);  
+						}  
+				   });  
+			  }  
+		 });  
+	});  
+	</script>  
